@@ -73,18 +73,22 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Function to check network state
+     * @return network state
+     */
     private boolean isNetworkAvailable(){
         ConnectivityManager manager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
         NetworkInfo info = manager.getActiveNetworkInfo();
         return info != null && info.isConnected();
     }
 
-    public class MovieAsyncTask extends AsyncTask<String, Void, ArrayList<MovieModel>> {
+    private class MovieAsyncTask extends AsyncTask<String, Void, ArrayList<MovieModel>> {
 
         Context context;
         GridView view;
 
-        public MovieAsyncTask(Context context) {
+        private MovieAsyncTask(Context context) {
             this.context = context;
         }
 
@@ -108,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
             updateUi(movieList);
         }
 
-        public void updateUi(final ArrayList<MovieModel> movieList){
+        private void updateUi(final ArrayList<MovieModel> movieList){
             view = (GridView) findViewById(R.id.grid_view);
 
             GridAdapter adapter = new GridAdapter(context, movieList);
